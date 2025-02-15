@@ -74,6 +74,7 @@ type AttributesTokens = {
 }
 
 export type Options = {
+    Name: string?,
     Casing: string?,
     UseColon: boolean?,
     UsePolling: boolean?,
@@ -178,6 +179,7 @@ export type ScopeNode = Node<"Scope", {
 ---- Settings ----
 
 local OPTIONS: {[string]: Lexer.Types} = {
+    Name = "String",
     Casing = "Identifier",
     UseColon = "Boolean",
     UsePolling = "Boolean",

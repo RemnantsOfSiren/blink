@@ -94,6 +94,7 @@ function Utility.Compile(Path: string, Options: CompileOptions)
     local FileOptions = AbstractSyntaxTree.Value.Options
     local ClientOutputPath = FileOptions.ClientOutput
     local ServerOutputPath = FileOptions.ServerOutput
+    local RemoteName = FileOptions.Name or "BLINK"
 
     assert(ClientOutputPath, "A client output path must be defined.")
     assert(ServerOutputPath, "A server output path must be defined.")
@@ -145,8 +146,9 @@ function Utility.Compile(Path: string, Options: CompileOptions)
     end
 
     local FilesTime = (os.clock() - FilesStart)
-    fs.writeFile(ServerOutput, ServerSource)
-    fs.writeFile(ClientOutput, ClientSource)
+
+    fs.writeFile(ServerOutput, string.gsub(ServerSource, "%[REMOTE_NAME%]", RemoteName:upper()))
+    fs.writeFile(ClientOutput, string.gsub(ClientSource, "%[REMOTE_NAME%]", RemoteName:upper()))
 
     if TypesSource and TypesOutput then
         CreateDirectoryIfNotFound(TypesOutput, Options)
