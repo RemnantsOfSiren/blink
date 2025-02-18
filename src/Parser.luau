@@ -96,7 +96,7 @@ export type Body = Node<"Body", {
 
 type Declarations = "Map" | "Set" | "Enum" | "TagEnum" | "Tuple" | "Struct" | "Primitive" | "Generic" | "Array" | "Event" | "Function" | "Scope" | "Optional"
 export type TypeNode = 
-    | Map 
+    Map 
     | Set 
     | Enum 
     | TagEnum 
